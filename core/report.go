@@ -314,7 +314,7 @@ func (report *Report) SetMargin(dx, dy float64) {
 	report.SetXY(x+dx, y+dy)
 }
 
-// 设置页面的尺寸, unit: mm pt in  size: A4 LTR, 目前支持常用的两种方式
+// 设置页面的尺寸, unit: mm pt in  size: A3 A4 LTR, 目前支持常用的两种方式
 func (report *Report) SetPage(size string, orientation string) {
 	unit := "pt"
 	config, ok := defaultConfigs[size]
@@ -323,6 +323,17 @@ func (report *Report) SetPage(size string, orientation string) {
 	}
 
 	switch size {
+	case "A3":
+		switch orientation {
+		case "P":
+			report.addAtomicCell("P|" + unit + "|A3|P")
+			report.pageWidth = config.width
+			report.pageHeight = config.height
+		case "L":
+			report.addAtomicCell("P|" + unit + "|A3|L")
+			report.pageWidth = config.height
+			report.pageHeight = config.width
+		}
 	case "A4":
 		switch orientation {
 		case "P":

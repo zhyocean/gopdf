@@ -104,9 +104,5 @@ func init() {
 
 // Register create self pdf config
 func Register(size string, config *Config) {
-	if _, ok := defaultConfigs[size]; ok {
-		panic("config size has exist")
-	}
-
 	defaultConfigs[size] = config
 }
