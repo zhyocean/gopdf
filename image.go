@@ -2,6 +2,7 @@ package gopdf
 
 import (
 	"fmt"
+	"github.com/zhyocean/gopdf/core"
 	"os"
 	"path/filepath"
 	"time"
